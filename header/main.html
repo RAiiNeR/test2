@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="./css/comn.css">
+  <link rel="stylesheet" href="./css/default.css">
+  <link rel="stylesheet" href="./css/media.css">
+  <title>헤더연습</title>
+  <!--마우스오버시 나오는 서브메뉴 제이쿼리-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ </head>
+ <script>
+	$(document).ready(function() {
+            $('.data > .data_pc > nav > ul > li').hover(
+                function() {
+                    $('.data_bg').stop(true, true).fadeIn(300); // 0.3초 페이드 인
+                }, 
+                function() {
+                    $('.data_bg').stop(true, true).fadeOut(300); // 0.3초 페이드 아웃
+                }
+            );
+        });
+
+		//햄버거 클릭시 x로 만듦
+		document.addEventListener('DOMContentLoaded', function() {
+            var hamMenu = document.querySelector('.data_ham_menu');
+
+            hamMenu.addEventListener('click', function() {
+                hamMenu.classList.toggle('active');
+            });
+        });
+
+		//햄버거 클릭시 전체메뉴 보임
+		$(document).ready(function() {
+            $('.data_ham_menu').click(function() {
+                $('.data_mo').toggle();
+            });
+        });
+		
+		//햄버거 li클릭시 나오는 서브메뉴들
+		$(document).ready(function() {
+    function handleMenuClick(event) {
+        // 클릭된 요소가 ul li인 경우에만 이벤트를 처리
+        if (!$(event.target).is('ul li')) {
+            var subMenu = $(this).children('.sub_menu');
+            $(this).siblings().children('.sub_menu').slideUp(300);
+            
+            var isVisible = subMenu.is(':visible');
+            if (isVisible) {
+                subMenu.slideUp(300);
+            } else {
+                subMenu.slideDown(300);
+            }
+        }
+    }
+
+    // 초기 이벤트 설정
+    if ($(window).width() <= 1023) {
+			$('.data_mo_inner > ul > li').click(handleMenuClick);
+		}
+
+		// 화면 크기 변경 시 이벤트 재설정
+		$(window).resize(function() {
+			if ($(window).width() <= 1023) {
+				$('.data_mo_inner > ul > li').off('click').on('click', handleMenuClick);
+			} else {
+				$('.data_mo_inner > ul > li').off('click');
+				$('.sub_menu').hide();
+			}
+		});
+
+		// .sub_menu 안의 링크 요소에 대한 클릭 이벤트 중복방지
+		$('.sub_menu').on('click', 'a', function(event) {
+			event.stopPropagation(); // 이벤트 중복방지
+		});
+	});
+
+
+//화살표회전	
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.data_mo_inner > ul > li').forEach(function (item) {
+        item.addEventListener('click', function () {
+            this.classList.toggle('rotated'); // 클래스 토글
+            this.querySelector('.sub_menu').classList.toggle('visible'); // 하위 메뉴 토글
+        });
+    });
+});
+  </script>
+ <body>
+	<!--공공데이터제공 헤더-->
+	<div class="cont">
+		<div class="header data">
+			<div class="data_pc">
+				<h1 class="logo">
+					<a href="#">공공데이터분쟁조정위원회</a>
+				</h1>
+
+				<nav>
+					<ul>
+						<li>
+							<a href="#">위원회 소개</a>
+							<ul class="dropdown drop1">
+								<li><a href="#">인사말</a></li>
+								<li><a href="#">위원소개</a></li>
+								<li><a href="#">조직도</a></li>
+								<li><a href="#">주요연혁</a></li>
+								<li><a href="#">오시는길</a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#">분쟁조정</a>
+							<ul class="dropdown drop2">
+								<li><a href="#">제도소개</a></li>
+								<li><a href="#">조정절차</a></li>
+								<li><a href="#">자주묻는질문</a></li>
+								<li><a href="#">주요사례</a></li>
+								<li><a href="#">조정통계</a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#">자료실</a>
+							<ul class="dropdown drop3">
+								<li><a href="#">조정사례</a></li>
+								<li><a href="#">발간물</a></li>
+								<li><a href="#">회의·행사</a></li>
+								<li><a href="#">법령·지침</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+
+				<div class="right">
+					<ul>
+						<li><a href="#">회원가입</a></li>
+						<li><a href="#">로그인</a></li>
+					</ul>
+					<p class="data_ham_menu">
+						<a href="#">
+							<span></span>
+							<span></span>
+							<span></span>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+			<div class="data_mo">
+				<div class="mo_top">
+					<div class="top">
+						<ul>
+							<li><a href="#">로그인</a></li>
+							<li><a href="#">회원가입</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="data_mo_inner">
+					<ul>
+						<li>
+							<a href="#">위원회 소개</a>
+							<div class="sub_menu">
+								<ul>
+									<li><a href="#">인사말</a></li>
+									<li><a href="#">위원소개</a></li>
+									<li><a href="#">조직도</a></li>
+									<li><a href="#">주요연혁</a></li>
+									<li><a href="#">오시는길</a></li>
+								</ul>
+							</div>
+						</li>
+
+						<li class="sub_drop">
+							<a href="#">분쟁조정</a>
+							<div class="sub_menu">
+								<ul>
+									<li><a href="#">제도소개</a></li>
+									<li><a href="#">발간물</a></li>
+									<li><a href="#">자주묻는질문</a></li>
+									<li><a href="#">주요사례</a></li>
+									<li><a href="#">조정통계</a></li>
+								</ul>
+							</div>
+						</li>
+
+						<li class="sub_drop">
+							<a href="#">자료실</a>
+							<div class="sub_menu">
+								<ul>
+									<li><a href="#">조정사례</a></li>
+									<li><a href="#">조정절차</a></li>
+									<li><a href="#">회의·행사</a></li>
+									<li><a href="#">법령·지침</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		<div class="data_bg"></div>
+	</div>
+
+
+	<div class="cont mt80">
+	 <div class="header kcl">
+		<div class="kcl_inner">
+			<h1 class="kcl_logo">
+				<a href="#">kcl한국건설생활환경시험연구원</a>
+			</h1>
+			
+			<nav>
+				<ul>
+					<li><a href="#">사업안내</a></li>
+					<li><a href="#">온라인 시험접수</a></li>
+					<li><a href="#">교육신청<span class="green"></span>안내</a></li>
+					<li><a href="#">조달안내</a></li>
+					<li><a href="#">고객참여</a></li>
+					<li><a href="#">알림/소식</a></li>
+					<li><a href="#">KCL소개</a></li>
+				</ul>
+
+				<div class="search">
+					<a href="#">검색창</a>
+				</div>
+				
+				<p class="ham_kcl">
+					<a href="#">
+						<span></span>
+						<span></span>
+						<span></span>
+					</a>
+				</p>
+			</nav>
+				
+		</div>
+	 </div>
+	</div>
+
+	<div class="cont mt80">
+	 <div class="header soft">
+		<div class="soft_inner">
+			<h1 class="soft_logo">
+				<a href="#">한국소프트웨어산업협회</a>
+			</h1>
+
+			<nav>
+				<ul>
+					<li><a href="#">사업지원</a></li>
+					<li><a href="#">인재지원</a></li>
+					<li><a href="#">해외진출지원</a></li>
+					<li><a href="#">알림마당</a></li>
+					<li><a href="#">회원공간</a></li>
+					<li><a href="#">협회안내</a></li>
+				</ul>
+			</nav>
+			
+			<div class="right">
+				<div class="search">
+					<a href="#">검색창</a>
+				</div>
+
+				<p class="ham_menu">
+					<a href="">
+						<span></span>
+						<span></span>
+						<span></span>
+					</a>
+				</p>
+			</div>
+		</div>
+	 </div>
+	</div>
+
+ </body>
+</html>

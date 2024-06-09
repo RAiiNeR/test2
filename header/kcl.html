@@ -29,12 +29,54 @@
 		});
 	});
 
+
+	
 	$(document).ready(function() {
-		// 검색 아이콘 클릭 시 검색창 토글
-		$('.kcl > .kcl_inner nav > .search').click(function() {
-			$('.search_box').slideToggle(400);
-		});
-	});
+    // 메인 메뉴에 마우스 오버 시 서브 메뉴 토글
+    $('.kcl > .kcl_inner nav ul li.main_menu').mouseenter(function() {
+        $(this).find('ul.kcl_sub').stop().slideDown(250);
+    }).mouseleave(function() {
+        $(this).find('ul.kcl_sub').stop().slideUp(250);
+    });
+
+    // 서브 메뉴의 각 항목에 마우스 오버 시 하위 메뉴 토글
+    $('.kcl > .kcl_inner nav ul li.main_menu ul.kcl_sub li').mouseenter(function() {
+        $(this).find('ul.kcl_sub').stop().slideDown(250);
+    }).mouseleave(function() {
+        $(this).find('ul.kcl_sub').stop().slideUp(250);
+    });
+
+    // 햄버거 아이콘 클릭 시 모바일 메뉴 슬라이드 인/아웃
+    $('.ham_kcl a').click(function() {
+        // 모바일 메뉴가 현재 보이는 상태인지 확인
+        var isMenuVisible = $('.mo_kcl').css('right') === '0px';
+
+        if (isMenuVisible) {
+            // 모바일 메뉴가 보이는 상태라면 원래 위치로 슬라이드 아웃
+            $('.mo_kcl').animate({ right: '-100%' }, 500); // 오른쪽으로 슬라이드하여 사라지기
+        } else {
+            // 모바일 메뉴가 보이지 않는 상태라면 오른쪽으로 슬라이드하여 나타나기
+            $('.mo_kcl').animate({ right: '0' }, 500); // 오른쪽으로 슬라이드하여 나타나기
+        }
+    });
+
+    // 모바일 메뉴 닫기 버튼 클릭 시 슬라이드 아웃
+    $('.mo_kcl .close_btn').click(function() {
+        $('.mo_kcl').animate({ right: '-100%' }, 500); // 오른쪽으로 슬라이드하여 사라지기
+    });
+});
+
+$(document).ready(function() {
+    // 검색 아이콘 클릭 시 검색 상자 슬라이드 토글
+    $('.kcl > .kcl_inner nav > .search > a').click(function() {
+        $('.search_box').slideDown(250); // 위에서 아래로 슬라이드하여 나타나기
+    });
+
+    // 검색창의 뒤로가기 버튼 클릭 시 검색 상자 숨기기
+    $('.text_box > button > a').click(function() {
+        $('.search_box').slideUp(250); // 위에서 아래로 슬라이드하여 사라지기
+    });
+});
   </script>
  </head>
  <body>
@@ -133,7 +175,9 @@
 				</p>
 			</nav>
 			<div class="search_box">
+				
 				<div class="text_box">
+					<button><a href="#">뒤로가기</a></button>
 					<div class="search_tit">
 						<h2>Search</h2>
 						<span>한국건설생활환경시험연구원의 어떤 정보를 원하시나요?</span>
@@ -159,13 +203,16 @@
 	 </div>
 	
 	 
-	 <div class="kcl_mo">
-		<div class="kcl_mo_inner">
-			<div class="mo_menu">
-				<ul>
-					<li>
+	 <div class="mo_kcl">
+		<div class="intro">
+			<h2>반갑습니다<br>여기는 한국건설생활환경시험연구원입니다.</h2>
+		</div>
+		<div class="mo_ham">
+			<div class="menu">
+				<ul class="menu_list">
+					<li class="ham_submenu">
 						<a href="#">사업안내</a>
-						<ul class="kcl_sub_mo">
+						<ul class="ham_sub">
 							<li><a href="#">시험/검사</a></li>
 							<li><a href="#">인증/심사</a></li>
 							<li><a href="#">R&D</a></li>
@@ -176,13 +223,13 @@
 							<li><a href="#">ESG 기업지원</a></li>
 						</ul>
 					</li>
-					<li><a href="#">온라인 시험접수</a></li>
-					<li><a href="#">교육신청<span class="green"></span>안내</a></li>
-					<li><a href="#">조달안내</a></li>
-					<li><a href="#">고객참여</a></li>
-					<li>
+					<li class="ham_submenu"><a href="#">온라인 시험접수</a></li>
+					<li class="ham_submenu"><a href="#">교육신청<span class="green"></span>안내</a></li>
+					<li class="ham_submenu"><a href="#">조달안내</a></li>
+					<li class="ham_submenu"><a href="#">고객참여</a></li>
+					<li class="ham_submenu">
 						<a href="#">알림/소식</a>
-						<ul class="kcl_sub_mo">
+						<ul class="ham_sub">
 							<li><a href="#">공지사항</a></li>
 							<li><a href="#">뉴스/보도자료</a></li>
 							<li><a href="#">사회공헌</a></li>
@@ -193,9 +240,9 @@
 							<li><a href="#">신청서양식</a></li>
 						</ul>
 					</li>
-					<li>
+					<li class="ham_submenu">
 						<a href="#">KCL소개</a>
-						<ul class="kcl_sub_mo">
+						<ul class="ham_sub">
 							<li><a href="#">인사말</a></li>
 							<li><a href="#">설립목적 및 비전</a></li>
 							<li><a href="#">연혁</a></li>
@@ -207,6 +254,7 @@
 						</ul>	
 					</li>
 				</ul>
+				<div class="ham_bg"></div>
 			</div>
 		</div>
 	 </div>

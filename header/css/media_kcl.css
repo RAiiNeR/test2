@@ -4,6 +4,10 @@
 	.kcl > .kcl_inner nav ul li > ul.kcl_sub > li > div.left					{padding:50px 55px 80px 0px;}
 }
 
+@media only screen and (min-width:1024px){
+	.mo_kcl		{display: none;}
+}
+
 
 /*---Kcl TA---*/
 @media only screen and (min-width:1024px) and (max-width:1340px){
@@ -18,16 +22,18 @@
 
 	/*검색창*/
 	.text_box								{width: 580px;}
+	.text_box > button > a					{background: url('../_img/search_X_mo.png') no-repeat 50% / contain; display: block; width: 20px; height: 20px;}
 	.search_box								{height: 450px;}
 	.search_tit h2							{font-size: 48px; line-height: 44px; margin-bottom: 15px;}
 	.search_tit h2:before					{left:-15px;}
 	.search_tit span						{font-size: 17px; margin-bottom: 20px;}
 	.search input							{font-size: 17px; padding:12px 10px; width: 580px;}
 	.search input::placeholder				{font-size: 17px;}
-	.search_box > .text_box > .search > a	{transform:translateY(-75%); background: url('../_img/searchbox_kcl_mo.jpg') no-repeat 50% / contain; width: 20px; height: 20px;}
+	.search_box > .text_box > .search > a	{transform:translateY(-65%); top: 60%; background: url('../_img/searchbox_kcl_mo.jpg') no-repeat 50% / contain; width: 20px; height: 20px;}
 	.tag_box span							{font-size: 16px; margin-bottom: 10px;}
 	.link									{height: 35px;}
 	.tag_box div a							{font-size: 15px; padding: 4px 12px;}
+	
 }
 
 @media only screen and (min-width:640px) and (max-width:1023px){
@@ -41,14 +47,15 @@
 	.search_box														{top:65px;}
 
 	/*검색창*/
+	.text_box > button > a					{background: url('../_img/search_X_mo.png') no-repeat 50% / contain; display: block; width: 20px; height: 20px;}
 	.text_box								{width: 500px;}
 	.search_box								{height: 420px;}
 	.search_tit h2							{font-size: 42px; line-height: 40px; margin-bottom: 10px;}
-	.search_tit h2:before					{left:-10px;}
+	.search_tit h2:before					{left:-15px;}
 	.search_tit span						{font-size: 16px; margin-bottom: 15px;}
 	.search input							{font-size: 16px; padding:12px 10px; width: 500px;}
 	.search input::placeholder				{font-size: 16px;}
-	.search_box > .text_box > .search > a	{transform:translateY(-75%); background: url('../_img/searchbox_kcl_mo.jpg') no-repeat 50% / contain; width: 20px; height: 20px;}
+	.search_box > .text_box > .search > a	{transform:translateY(-65%); top: 60%; background: url('../_img/searchbox_kcl_mo.jpg') no-repeat 50% / contain; width: 20px; height: 20px;}
 	.tag_box								{margin-top: 20px;}
 	.tag_box span							{font-size: 16px; margin-bottom: 10px;}
 	.link									{height: 35px;}
@@ -73,15 +80,33 @@
 
 	/*검색창*/
 	.text_box								{width: 360px;}
+	.text_box > button > a					{background: url('../_img/search_X_mo.png') no-repeat 50% / contain; display: block; width: 15px; height: 15px;}
 	.search_box								{top: 50px; height: 400px;}
 	.search_tit h2							{font-size: 42px; line-height: 36px; margin-bottom: 10px;}
 	.search_tit h2:before					{left:-15px;}
 	.search_tit span						{font-size: 15px; margin-bottom: 10px;}
 	.search input							{font-size: 15px; padding:10px; width: 360px;}
 	.search input::placeholder				{font-size: 15px;}
-	.search_box > .text_box > .search > a	{transform:translateY(-65%); background: url('../_img/searchbox_kcl_mo.jpg') no-repeat 50% / contain; width: 15px; height: 15px;}
+	.search_box > .text_box > .search > a	{transform:translateY(-82%); top: 60%; background: url('../_img/searchbox_kcl_mo.jpg') no-repeat 50% / contain; width: 15px; height: 15px;}
 	.tag_box								{margin-top: 20px;}
 	.tag_box span							{font-size: 15px; margin-bottom: 10px;}
 	.link									{height: 30px;}
 	.tag_box div a							{font-size: 14px; padding: 2px 10px; margin-right: 2px;}
+
+	/*햄버거메뉴*/
+	.mo_ham                             				  			{height: calc(100vh - 180px);}
+	.intro                          					  			{width: 100%; height: 150px; background: #fff; padding: 25px 30px; position: relative;}
+	.intro h2                      				 		  			{font-size:16px; font-weight: 600; color:#000; position: absolute; bottom: 20px; line-height: 25px;}
+	.mo_kcl                         					  			{position: fixed; top: 0; width: 100%; z-index: 4;}
+	.menu ul.menu_list                      			  			{position: relative; z-index: 5; display: flex; flex-direction: column; width: 40%; height: calc(100vh - 150px); background: #0068b7; justify-content: flex-start; padding-top: 0px;}
+	.menu ul.menu_list li.ham_submenu                     			{position: relative; padding: 15px 20px;}
+	.menu ul.menu_list li.ham_submenu:first-child         			{padding-top: 45px;}
+	.menu ul.menu_list li.ham_submenu a                   			{font-size: 18px; font-weight:400; color: #fff;}
+	.ham_sub                        					  			{display: none; width: 186%; position: absolute; top: 0; left: 100%; height: calc(100vh - 150px); background: #eee; padding-top: 30px;}
+	.ham_sub li                     					 			{padding:15px 20px;}
+	.menu ul.menu_list li.ham_submenu > .ham_sub li > a   			{font-size:18px; color: #333; transition: 0.3s;}
+	.menu ul.menu_list li.ham_submenu > .ham_sub li > a:hover       {color: #0068b7; font-weight: 600;}
+	.menu_list > li.ham_submenu:nth-child(6) > .ham_sub     { top: -43%; transform: translateY(-36%); }
+	.menu_list > li.ham_submenu:nth-child(7) > .ham_sub     {top: -57%; transform: translateY(-42%); }
+	.ham_bg                                                               {background: #efefef;position: absolute;width: 100%;height: calc(100% - 120px);top: 150px;z-index:1;}
 }

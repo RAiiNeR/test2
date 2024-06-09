@@ -13,31 +13,14 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>kcl 헤더연습</title>
   <script>
+	// 메인 메뉴에 마우스 오버 시 서브 메뉴 토글
 	$(document).ready(function() {
-		// 메인 메뉴에 마우스 오버 시 서브 메뉴 토글
-		$('.kcl > .kcl_inner nav ul li.main_menu').mouseenter(function() {
-			$(this).find('ul.kcl_sub').stop().slideDown(250);
-		}).mouseleave(function() {
-			$(this).find('ul.kcl_sub').stop().slideUp(250);
-		});
-
-		// 서브 메뉴의 각 항목에 마우스 오버 시 하위 메뉴 토글
-		$('.kcl > .kcl_inner nav ul li.main_menu ul.kcl_sub li').mouseenter(function() {
-			$(this).find('ul.kcl_sub').stop().slideDown(250);
-		}).mouseleave(function() {
-			$(this).find('ul.kcl_sub').stop().slideUp(250);
-		});
-	});
-
-
-	
-	$(document).ready(function() {
-    // 메인 메뉴에 마우스 오버 시 서브 메뉴 토글
     $('.kcl > .kcl_inner nav ul li.main_menu').mouseenter(function() {
         $(this).find('ul.kcl_sub').stop().slideDown(250);
     }).mouseleave(function() {
         $(this).find('ul.kcl_sub').stop().slideUp(250);
     });
+
 
     // 서브 메뉴의 각 항목에 마우스 오버 시 하위 메뉴 토글
     $('.kcl > .kcl_inner nav ul li.main_menu ul.kcl_sub li').mouseenter(function() {
@@ -46,6 +29,7 @@
         $(this).find('ul.kcl_sub').stop().slideUp(250);
     });
 
+
     // 햄버거 아이콘 클릭 시 모바일 메뉴 슬라이드 인/아웃
     $('.ham_kcl a').click(function() {
         // 모바일 메뉴가 현재 보이는 상태인지 확인
@@ -53,10 +37,10 @@
 
         if (isMenuVisible) {
             // 모바일 메뉴가 보이는 상태라면 원래 위치로 슬라이드 아웃
-            $('.mo_kcl').animate({ right: '-100%' }, 500); // 오른쪽으로 슬라이드하여 사라지기
+            $('.mo_kcl').animate({ right: '-100%' }, 500);
         } else {
             // 모바일 메뉴가 보이지 않는 상태라면 오른쪽으로 슬라이드하여 나타나기
-            $('.mo_kcl').animate({ right: '0' }, 500); // 오른쪽으로 슬라이드하여 나타나기
+            $('.mo_kcl').animate({ right: '0' }, 500);
         }
     });
 
@@ -66,8 +50,9 @@
     });
 });
 
-$(document).ready(function() {
-    // 검색 아이콘 클릭 시 검색 상자 슬라이드 토글
+
+// 검색 아이콘 클릭 시 검색 상자 슬라이드 토글
+$(document).ready(function() {    
     $('.kcl > .kcl_inner nav > .search > a').click(function() {
         $('.search_box').slideDown(250); // 위에서 아래로 슬라이드하여 나타나기
     });
@@ -75,8 +60,31 @@ $(document).ready(function() {
     // 검색창의 뒤로가기 버튼 클릭 시 검색 상자 숨기기
     $('.text_box > button > a').click(function() {
         $('.search_box').slideUp(250); // 위에서 아래로 슬라이드하여 사라지기
+        $('.search_box input[type="text"]').val(''); // 입력된 내용 초기화
     });
 });
+
+//햄버거 메뉴 : 클릭된 서브메뉴 보이게 하기
+$(document).ready(function() {
+    $('.ham_submenu').click(function() {
+        // 클릭된 서브 메뉴의 서브 메뉴 요소 선택
+        var subMenu = $(this).find('.ham_sub');
+
+        // 현재 활성화된 서브 메뉴를 찾아서 숨김
+        $('.ham_submenu.active').removeClass('active');
+
+        // 클릭된 서브 메뉴의 서브 메뉴를 표시하고 active 클래스 추가
+        $(this).addClass('active');
+    });
+});
+
+$(window).resize(function() {
+    if ($(window).width() >= 1024) {
+        $('.ham_submenu.active').removeClass('active');
+        $('.ham_submenu:first-child').addClass('active');
+    }
+});
+
   </script>
  </head>
  <body>
@@ -210,7 +218,7 @@ $(document).ready(function() {
 		<div class="mo_ham">
 			<div class="menu">
 				<ul class="menu_list">
-					<li class="ham_submenu">
+					<li class="ham_submenu active">
 						<a href="#">사업안내</a>
 						<ul class="ham_sub">
 							<li><a href="#">시험/검사</a></li>

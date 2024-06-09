@@ -104,7 +104,7 @@
 	.menu ul.menu_list li.ham_submenu a                   			{font-size: 18px; font-weight:400; color: #fff;}
 	.ham_sub                        					  			{display: none; width: 186%; position: absolute; top: 0; left: 100%; height: calc(100vh - 150px); background: #eee; padding-top: 30px;}
 	.ham_sub li                     					 			{padding:15px 20px;}
-	.menu ul.menu_list li.ham_submenu > .ham_sub li > a   			{font-size:18px; color: #333; transition: 0.3s;}
+	.menu ul.menu_list li.ham_submenu > .ham_sub li > a   			{font-size:16px; color: #333; transition: 0.3s;}
 	.menu ul.menu_list li.ham_submenu > .ham_sub li > a:hover       {color: #0068b7; font-weight: 600;}
 	.menu_list > li.ham_submenu:nth-child(6) > .ham_sub     { top: -43%; transform: translateY(-36%); }
 	.menu_list > li.ham_submenu:nth-child(7) > .ham_sub     {top: -57%; transform: translateY(-42%); }

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="./css/data.css">
+  <link rel="stylesheet" href="./css/default.css">
+  <link rel="stylesheet" href="./css/media_data.css">
+  <title>공공데이터 헤더연습</title>
+  <!--마우스오버시 나오는 서브메뉴 제이쿼리-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ </head>
+ <script>
+	$(document).ready(function() {
+		// PC 메뉴 hover 시 배경 페이드 인/아웃
+		$('.data > .data_pc > nav > ul > li').hover(
+			function() {
+				$('.data_bg').stop(true, true).fadeIn(300); // 0.3초 페이드 인
+			}, 
+			function() {
+				$('.data_bg').stop(true, true).fadeOut(300); // 0.3초 페이드 아웃
+			}
+		);
+
+		// 햄버거 클릭 시 x로 변환
+		$('.data_ham_menu').click(function() {
+            $(this).toggleClass('active');
+            $('.data_mo').toggle(); // 전체 메뉴 보임/숨김
+            $('.data_mo_inner > ul > li').removeClass('rotated').children('.sub_menu').slideUp(0); // 모든 하위 메뉴 초기화
+            previousClickedMenuItem = null; // 이전에 클릭된 메뉴 초기화
+        });
+
+		// 햄버거 메뉴 클릭 시 서브메뉴 토글
+		let previousClickedMenuItem = null; // 이전에 클릭된 메뉴 아이템 추적
+
+        function handleMenuClick(event) {
+            if ($(event.target).is('.menu-link, .menu-link *')) {
+                var subMenu = $(this).children('.sub_menu');
+                var isVisible = subMenu.is(':visible');
+                
+                // 이전에 클릭된 메뉴가 있으면 색상 및 상태 초기화
+                if (previousClickedMenuItem && previousClickedMenuItem[0] !== $(this)[0]) {
+                    previousClickedMenuItem.children('.sub_menu').slideUp(300);
+                    previousClickedMenuItem.children('a').css('color', '#222');
+                    previousClickedMenuItem.removeClass('rotated');
+                }
+
+                // 현재 메뉴의 색상 및 상태 변경
+                if (isVisible) {
+                    subMenu.slideUp(300);
+                    $(this).removeClass('rotated');
+                    $(this).children('a').css('color', '#222'); // 링크 색상 원상태로
+                } else {
+                    subMenu.slideDown(300);
+                    $(this).addClass('rotated');
+                    $(this).children('a').css('color', '#06b7eb'); // 링크 색상 변경
+                }
+
+                // 현재 클릭된 메뉴 아이템 추적
+                previousClickedMenuItem = $(this);
+            }
+        }
+
+		// 초기 이벤트 설정 및 화면 크기 변경 시 이벤트 재설정
+        function setMenuEventHandlers() {
+            if ($(window).width() <= 1023) {
+                $('.data_mo_inner > ul > li').off('click').on('click', handleMenuClick);
+            } else {
+                $('.data_mo_inner > ul > li').off('click');
+                $('.sub_menu').hide();
+                $('.menu-link img').removeClass('rotate-90'); // 모든 회전 상태 초기화
+                $('.data_mo_inner > ul > li').removeClass('rotated'); // 모든 li 상태 초기화
+                $('.data_mo_inner > ul > li > a').css('color', '#222'); // 모든 링크 색상 초기화
+                previousClickedMenuItem = null; // 이전에 클릭된 메뉴 초기화
+            }
+        }
+
+
+
+		// 화면 크기 변경 시 이벤트 핸들러 설정 및 상태 초기화
+		$(window).resize(function() {
+			setMenuEventHandlers();
+			if ($(window).width() > 1023) {
+				$('.menu-link').removeClass('rotate-arrow'); // 모든 회전 상태 초기화
+			}
+		});
+
+		setMenuEventHandlers();
+
+		// .sub_menu 안의 링크 요소에 대한 클릭 이벤트 중복방지
+		$('.sub_menu').on('click', 'a', function(event) {
+			event.stopPropagation(); // 이벤트 중복방지
+		});
+
+		// 화살표
+		$('.menu-link').on('click', function(event) {
+			event.preventDefault(); // 기본 링크 동작 방지
+
+			// 현재 클릭된 메뉴 링크에 rotate-arrow 클래스를 토글
+			$(this).toggleClass('rotate-arrow');
+
+			// 다른 이미지를 회전하지 않고 이전에 회전된 이미지를 원래대로 되돌립니다.
+			$('.menu-link').not(this).removeClass('rotate-arrow');
+		});
+
+		// .data_ham_menu가 클릭되면 모든 회전 상태 초기화
+		$('.data_ham_menu').on('click', function() {
+			$('.menu-link').removeClass('rotate-arrow');
+			$('.data_mo_inner > ul > li > a').css('color', '#222'); // 모든 링크 색상 초기화
+			previousClickedArrow = null;
+			previousClickedMenuItem = null; // 이전에 클릭된 메뉴 초기화
+		});
+	});
+
+  </script>
+ <body>
+	<!--공공데이터제공 헤더-->
+	<div class="cont">
+		<div class="header data">
+			<div class="data_pc">
+				<h1 class="logo">
+					<a href="#">공공데이터분쟁조정위원회</a>
+				</h1>
+
+				<nav>
+					<ul>
+						<li>
+							<a href="#">위원회 소개</a>
+							<ul class="dropdown drop1">
+								<li><a href="#">인사말</a></li>
+								<li><a href="#">위원소개</a></li>
+								<li><a href="#">조직도</a></li>
+								<li><a href="#">주요연혁</a></li>
+								<li><a href="#">오시는길</a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#">분쟁조정</a>
+							<ul class="dropdown drop2">
+								<li><a href="#">제도소개</a></li>
+								<li><a href="#">조정절차</a></li>
+								<li><a href="#">자주묻는질문</a></li>
+								<li><a href="#">주요사례</a></li>
+								<li><a href="#">조정통계</a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#">자료실</a>
+							<ul class="dropdown drop3">
+								<li><a href="#">조정사례</a></li>
+								<li><a href="#">발간물</a></li>
+								<li><a href="#">회의·행사</a></li>
+								<li><a href="#">법령·지침</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+
+				<div class="right">
+					<ul>
+						<li><a href="#">회원가입</a></li>
+						<li><a href="#">로그인</a></li>
+					</ul>
+					<p class="data_ham_menu">
+						<a href="#">
+							<span></span>
+							<span></span>
+							<span></span>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+			<div class="data_mo">
+				<div class="mo_top">
+					<div class="top">
+						<ul>
+							<li><a href="#">로그인</a></li>
+							<li><a href="#">회원가입</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="data_mo_inner">
+					<ul>
+						<li>
+							<a href="#" class="menu-link">위원회 소개</a>
+							<div class="sub_menu">
+								<ul>
+									<li><a href="#">인사말</a></li>
+									<li><a href="#">위원소개</a></li>
+									<li><a href="#">조직도</a></li>
+									<li><a href="#">주요연혁</a></li>
+									<li><a href="#">오시는길</a></li>
+								</ul>
+							</div>
+						</li>
+
+						<li class="sub_drop">
+							<a href="#" class="menu-link">분쟁조정</a>
+							<div class="sub_menu">
+								<ul>
+									<li><a href="#">제도소개</a></li>
+									<li><a href="#">발간물</a></li>
+									<li><a href="#">자주묻는질문</a></li>
+									<li><a href="#">주요사례</a></li>
+									<li><a href="#">조정통계</a></li>
+								</ul>
+							</div>
+						</li>
+
+						<li class="sub_drop">
+							<a href="#" class="menu-link">자료실</a>
+							<div class="sub_menu">
+								<ul>
+									<li><a href="#">조정사례</a></li>
+									<li><a href="#">조정절차</a></li>
+									<li><a href="#">회의·행사</a></li>
+									<li><a href="#">법령·지침</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		<div class="data_bg"></div>
+	</div>
+ </body>
+</html>

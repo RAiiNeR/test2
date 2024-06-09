@@ -12,7 +12,8 @@
 .kcl > .kcl_inner nav									{display:flex; align-items:center; height:100%;}
 .kcl > .kcl_inner nav ul.kcl_main						{display:flex;}
 .kcl > .kcl_inner nav ul li.main_menu					{padding:0 25px; cursor:pointer;}
-.kcl > .kcl_inner nav ul li:nth-child(1)				{margin-left:0; }
+.kcl > .kcl_inner nav ul li:nth-child(1)				{padding-left:0;}
+.kcl > .kcl_inner nav ul li:nth-child(7)				{padding-right:0;}
 .kcl > .kcl_inner nav ul li > a							{font-size:18px; color:#333; transition:0.3s;}
 .kcl > .kcl_inner nav ul li a:hover						{color:#0068b7;}
 .kcl > .kcl_inner nav ul li a:before					{display:block; position:absolute; visibility:hidden; opacity:0; bottom:1px; left:50%; width:0; height:3px; background:#6a9a13; transition-property:left, width;}

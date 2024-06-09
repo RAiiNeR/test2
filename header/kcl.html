@@ -13,89 +13,28 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>kcl 헤더연습</title>
   <script>
-	/*kcl 제이쿼리
 	$(document).ready(function() {
-    var kclTimeout;
+		// 메인 메뉴에 마우스 오버 시 서브 메뉴 토글
+		$('.kcl > .kcl_inner nav ul li.main_menu').mouseenter(function() {
+			$(this).find('ul.kcl_sub').stop().slideDown(250);
+		}).mouseleave(function() {
+			$(this).find('ul.kcl_sub').stop().slideUp(250);
+		});
 
-    // .kcl > .kcl_inner nav ul 요소에 마우스가 진입할 때 이벤트 처리
-    $('.kcl > .kcl_inner nav ul').hover(
-        function() { // 마우스가 진입할 때
-            clearTimeout(kclTimeout);
-            $('.kcl_bg').stop(true, true).slideDown();
-            $(this).find('.kcl_sub').stop(true, true).slideDown(500);
-        },
-        function() { // 마우스가 이탈할 때
-            kclTimeout = setTimeout(function() {
-                $('.kcl_bg, .kcl_sub').stop(true, true).slideUp(500);
-            }, 500);
-        }
-    );
+		// 서브 메뉴의 각 항목에 마우스 오버 시 하위 메뉴 토글
+		$('.kcl > .kcl_inner nav ul li.main_menu ul.kcl_sub li').mouseenter(function() {
+			$(this).find('ul.kcl_sub').stop().slideDown(250);
+		}).mouseleave(function() {
+			$(this).find('ul.kcl_sub').stop().slideUp(250);
+		});
+	});
 
-    // .kcl_bg 요소에 마우스가 진입하거나 이탈할 때 이벤트 처리
-    $('.kcl_bg').hover(
-        function() { // 마우스가 진입할 때
-            clearTimeout(kclTimeout);
-        },
-        function() { // 마우스가 이탈할 때
-            kclTimeout = setTimeout(function() {
-                $('.kcl_bg').stop(true, true).slideUp(500);
-            }, 500);
-        }
-    );
-
-    // .kcl_sub 요소에 마우스가 진입하거나 이탈할 때 이벤트 처리
-    $('.kcl_sub').hover(
-        function() { // 마우스가 진입할 때
-            clearTimeout(kclTimeout);
-        },
-        function() { // 마우스가 이탈할 때
-            kclTimeout = setTimeout(function() {
-                $('.kcl_bg').stop(true, true).slideUp(500);
-            }, 500);
-        }
-    );
-    // kcl_sub 하위 링크에 대한 이벤트 처리
-    $('.kcl_sub li a').hover(
-        function() { // 마우스가 진입할 때
-            clearTimeout(kclTimeout);
-        },
-        function() { // 마우스가 이탈할 때
-            kclTimeout = setTimeout(function() {
-                $('.kcl_bg').stop(true, true).slideUp(500);
-            }, 500);
-        }
-    );
-
-	$('.search').click(function() {
-		$('.search_box').slideToggle();
-    });
-
-	$('.ham_kcl').click(function() {
-		$('.kcl_mo').animate({width:'toggle'}, 350);
-    });
-});*/
-$(document).ready(function() {
-    // 메인 메뉴에 마우스 오버 시 서브 메뉴 토글
-    $('.kcl > .kcl_inner nav ul li.main_menu').mouseenter(function() {
-        $(this).find('ul.kcl_sub').stop().slideDown(250);
-    }).mouseleave(function() {
-        $(this).find('ul.kcl_sub').stop().slideUp(250);
-    });
-
-    // 서브 메뉴의 각 항목에 마우스 오버 시 하위 메뉴 토글
-    $('.kcl > .kcl_inner nav ul li.main_menu ul.kcl_sub li').mouseenter(function() {
-        $(this).find('ul.kcl_sub').stop().slideDown(250);
-    }).mouseleave(function() {
-        $(this).find('ul.kcl_sub').stop().slideUp(250);
-    });
-});
-
-$(document).ready(function() {
-    // 검색 아이콘 클릭 시 검색창 토글
-    $('.kcl > .kcl_inner nav > .search').click(function() {
-        $('.search_box').slideToggle(400);
-    });
-});
+	$(document).ready(function() {
+		// 검색 아이콘 클릭 시 검색창 토글
+		$('.kcl > .kcl_inner nav > .search').click(function() {
+			$('.search_box').slideToggle(400);
+		});
+	});
   </script>
  </head>
  <body>

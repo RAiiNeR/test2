@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .cont		{height:100%; position:relative;}
-.header		{width:100%; background:#aa4747;}
+.header		{width:100%; background:#fff;}
 
 
 /*kcl header*/
@@ -12,8 +12,7 @@
 .kcl > .kcl_inner nav									{display:flex; align-items:center; height:100%;}
 .kcl > .kcl_inner nav ul.kcl_main						{display:flex;}
 .kcl > .kcl_inner nav ul li.main_menu					{padding:0 25px; cursor:pointer;}
-.kcl > .kcl_inner nav ul li:nth-child(1)				{padding-left:0;}
-.kcl > .kcl_inner nav ul li:nth-child(7)				{padding-right:0;}
+.kcl > .kcl_inner nav ul li:nth-child(1)				{padding-left:0; }
 .kcl > .kcl_inner nav ul li > a							{font-size:18px; color:#333; transition:0.3s;}
 .kcl > .kcl_inner nav ul li a:hover						{color:#0068b7;}
 .kcl > .kcl_inner nav ul li a:before					{display:block; position:absolute; visibility:hidden; opacity:0; bottom:1px; left:50%; width:0; height:3px; background:#6a9a13; transition-property:left, width;}
@@ -48,7 +47,7 @@
 .search_box > .text_box > .search > a					{background:url('../_img/searchbox_kcl_pc.jpg') no-repeat 50%; text-indent:-9999px; display:block; width:30px; height:30px; position:absolute; right:15px; top:50%; transform:translateY(-30%);}
 .search input											{background: transparent;border: none;width: 670px; padding:15px 10px; font-size: 22px;font-weight: 500; border-bottom:1px solid #0068b7;}
 .search input::placeholder								{font-size: 22px;font-weight:500;}
-.text_box												{width:670px; margin:auto; padding:25px 0; position:relative; top:50%; transform:translateY(-50%);}
+.text_box												{width:670px; margin:auto; position:relative; top:50%; transform:translateY(-50%);}
 .search_tit												{display:flex; flex-direction:column;}
 .search_tit	h2											{font-size:60px; margin-bottom:10px; line-height:57px; color:#000; cursor:default;}
 .search_tit	h2:before									{display:block; content:''; width:10px; height:10px; border-radius:50%; position:absolute; left:-20px; background:#0068b7;}

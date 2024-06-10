@@ -30,58 +30,196 @@
     });
 
 
-    // 햄버거 아이콘 클릭 시 모바일 메뉴 슬라이드 인/아웃
+// 햄버거 아이콘 클릭 시 모바일 메뉴 슬라이드 인/아웃
+        $('.ham_kcl a').click(function(event) {
+            event.preventDefault();
+            
+            // 모바일 메뉴가 현재 보이는 상태인지 확인
+            var isMenuVisible = $('.mo_kcl').css('right') === '0px';
+
+            if (isMenuVisible) {
+                // 모바일 메뉴가 보이는 상태라면 원래 위치로 슬라이드 아웃
+                $('.mo_kcl').animate({ right: '-100%' }, 300, function() {
+                    // 햄버거 아이콘 상태 초기화
+                    $('.ham_kcl a').removeClass('on');
+                    // 모든 .ham_submenu 항목의 active 클래스 제거
+                    $('.ham_submenu').removeClass('on');
+                    // 첫 번째 .ham_submenu에 active 클래스 추가
+                    $('.ham_submenu:first-child').addClass('on');
+
+                });
+            } else {
+                // 모바일 메뉴가 보이지 않는 상태라면 오른쪽으로 슬라이드하여 나타나기
+                $('.mo_kcl').animate({ right: '0' }, 300);
+                // 햄버거 아이콘 상태 변경
+                $('.ham_kcl a').addClass('on');
+            }
+        });
+
+// 검색 아이콘 클릭 시 검색 상자와 .on 클래스 슬라이드 토글
+$('.kcl > .kcl_inner nav > .search > a').click(function() {
+    // 햄버거 메뉴가 활성화된 상태라면
+    if ($('.ham_kcl a').hasClass('on')) {
+        // 햄버거 메뉴를 슬라이드 아웃
+        $('.mo_kcl').animate({ right: '-100%' }, 300, function() {
+            // 햄버거 아이콘 상태 초기화
+            $('.ham_kcl a').removeClass('on');
+            // 모든 .ham_submenu 항목의 active 클래스 제거
+            $('.ham_submenu').removeClass('on');
+            // 첫 번째 .ham_submenu에 active 클래스 추가
+            $('.ham_submenu:first-child').addClass('on');
+        });
+    }
+});
+
+
+
+$(document).ready(function() {
+    $('.ham_submenu').each(function() {
+        if (!$(this).find('.ham_sub').length) {
+            $(this).children('a').css('background-image', 'none');
+        }
+    });
+});
+
+   // 모바일 메뉴 닫기 버튼 클릭 시 슬라이드 아웃
+$('.mo_kcl .close_btn').click(function() {
+    $('.mo_kcl').animate({ right: '-100%' }, 500, function() {
+        // 햄버거 아이콘 상태 초기화
+        $('.ham_kcl a').removeClass('active');
+        // 모든 .ham_submenu 항목의 active 클래스 제거
+        $('.ham_submenu').removeClass('active');
+        // 첫 번째 .ham_submenu에 active 클래스 추가
+        $('.ham_submenu:first-child').addClass('active');
+    });
+});
+});
+
+
+$(document).ready(function() {
+    // 검색 아이콘 클릭 시 검색 상자와 .on 클래스 슬라이드 토글
+    $('.kcl > .kcl_inner nav > .search > a').click(function() {
+		var searchBox = $('.search_box');
+
+		// 햄버거 메뉴가 활성화된 상태라면
+        if ($('.ham_kcl a').hasClass('on')) {
+            // 햄버거 메뉴를 슬라이드 아웃
+            $('.mo_kcl').animate({ right: '-100%' }, 300, function() {
+                // 햄버거 아이콘 상태 초기화
+                $('.ham_kcl a').removeClass('on');
+                // 모든 .ham_submenu 항목의 active 클래스 제거
+                $('.ham_submenu').removeClass('on');
+                // 첫 번째 .ham_submenu에 active 클래스 추가
+                $('.ham_submenu:first-child').addClass('on');
+            });
+        }
+
+        $('.search_box').slideToggle(250); // 검색 상자 슬라이드 토글
+        $(this).toggleClass('icon'); // .icon 클래스 토글
+
+		// 검색 아이콘 배경 이미지 토글
+        $(this).toggleClass('icon-active');
+
+		 // 만약 검색 상자가 보이는 상태에서 클릭되었으면 햄버거 메뉴 아이콘을 숨김
+        if (isSearchVisible) {
+            $('.ham_kcl a').hide();
+        } else {
+            $('.ham_kcl a').show();
+        }
+    });
+
+    // 검색창의 뒤로가기 버튼 클릭 시 검색 상자와 .on 클래스 숨기기
+    $('.text_box > button > a').click(function() {
+        $('.search_box').slideUp(250); // 위에서 아래로 슬라이드하여 사라지기
+        $('.search_box input[type="text"]').val(''); // 입력된 내용 초기화
+        $('.kcl > .kcl_inner nav > .search > a').removeClass('icon'); // .icon 클래스 제거
+		$('.ham_kcl a').show(); // 햄버거 메뉴 아이콘 보이기
+		$('.kcl > .kcl_inner nav > .search > a').removeClass('icon-active'); // 검색 아이콘 배경 이미지 원래대로
+    });
+
+	// 햄버거 아이콘 클릭 시 검색 상자가 활성화된 상태라면 검색 상자를 슬라이드 아웃
     $('.ham_kcl a').click(function() {
-        // 모바일 메뉴가 현재 보이는 상태인지 확인
+        if ($('.search_box').is(':visible')) {
+            $('.search_box').slideUp(250); // 위에서 아래로 슬라이드하여 사라지기
+            $('.search_box input[type="text"]').val(''); // 입력된 내용 초기화
+            $('.kcl > .kcl_inner nav > .search > a').removeClass('icon'); // .icon 클래스 제거
+			$('.kcl > .kcl_inner nav > .search > a').removeClass('icon-active'); // 검색 아이콘 배경 이미지 원래대로
+        }
+
+	 // 검색 아이콘을 보이거나 숨기기
+		$('.kcl > .kcl_inner nav > .search > a').toggle();
+
+		// 모바일 메뉴가 현재 보이는 상태인지 확인
         var isMenuVisible = $('.mo_kcl').css('right') === '0px';
 
         if (isMenuVisible) {
             // 모바일 메뉴가 보이는 상태라면 원래 위치로 슬라이드 아웃
-            $('.mo_kcl').animate({ right: '-100%' }, 500);
+            $('.mo_kcl').animate({ right: '-100%' }, 300, function() {
+                // 햄버거 아이콘 상태 초기화
+                $('.ham_kcl a').removeClass('on');
+                // 모든 .ham_submenu 항목의 active 클래스 제거
+                $('.ham_submenu').removeClass('on');
+                // 첫 번째 .ham_submenu에 active 클래스 추가
+                $('.ham_submenu:first-child').addClass('on');
+            });
         } else {
             // 모바일 메뉴가 보이지 않는 상태라면 오른쪽으로 슬라이드하여 나타나기
-            $('.mo_kcl').animate({ right: '0' }, 500);
+            $('.mo_kcl').animate({ right: '0' }, 300);
+            // 햄버거 아이콘 상태 변경
+            $('.ham_kcl a').addClass('on');
         }
-    });
-
-    // 모바일 메뉴 닫기 버튼 클릭 시 슬라이드 아웃
-    $('.mo_kcl .close_btn').click(function() {
-        $('.mo_kcl').animate({ right: '-100%' }, 500); // 오른쪽으로 슬라이드하여 사라지기
-    });
-});
-
-
-// 검색 아이콘 클릭 시 검색 상자 슬라이드 토글
-$(document).ready(function() {    
-    $('.kcl > .kcl_inner nav > .search > a').click(function() {
-        $('.search_box').slideDown(250); // 위에서 아래로 슬라이드하여 나타나기
-    });
-
-    // 검색창의 뒤로가기 버튼 클릭 시 검색 상자 숨기기
-    $('.text_box > button > a').click(function() {
-        $('.search_box').slideUp(250); // 위에서 아래로 슬라이드하여 사라지기
-        $('.search_box input[type="text"]').val(''); // 입력된 내용 초기화
     });
 });
 
 //햄버거 메뉴 : 클릭된 서브메뉴 보이게 하기
 $(document).ready(function() {
     $('.ham_submenu').click(function() {
-        // 클릭된 서브 메뉴의 서브 메뉴 요소 선택
+        // 클릭된 서브 메뉴의 하위 메뉴 요소 선택
         var subMenu = $(this).find('.ham_sub');
 
-        // 현재 활성화된 서브 메뉴를 찾아서 숨김
-        $('.ham_submenu.active').removeClass('active');
+        // 현재 활성화된 서브 메뉴를 찾아서 숨김하고 font-weight 스타일 제거
+        $('.ham_submenu.active').removeClass('active').css('font-weight', '');
 
-        // 클릭된 서브 메뉴의 서브 메뉴를 표시하고 active 클래스 추가
-        $(this).addClass('active');
+        // 클릭된 서브 메뉴가 하위 메뉴를 가지고 있는 경우에만 active 클래스와 font-weight 스타일을 적용
+        if (subMenu.length > 0) {
+            $(this).addClass('active').css('font-weight', '600');
+        }
     });
 });
 
+$(document).ready(function() {
+    // 클릭된 서브메뉴가 활성화되었을 때의 동작 설정
+    $('.ham_submenu').click(function() {
+        // 클릭된 서브메뉴 요소의 서브메뉴를 찾음
+        var subMenu = $(this).find('.ham_sub');
+
+        // 활성화된 서브메뉴를 찾아서 모든 서브메뉴 요소에 스타일을 적용
+        $('.ham_submenu.active').removeClass('active'); // 현재 활성화된 서브메뉴 요소에서 active 클래스 제거
+        $(this).addClass('active'); // 클릭된 서브메뉴 요소에 active 클래스 추가
+    });
+});
+
+// 화면 크기 변경 시 처리
 $(window).resize(function() {
     if ($(window).width() >= 1024) {
-        $('.ham_submenu.active').removeClass('active');
+        // 모든 .ham_submenu 항목의 active 클래스 제거
+        $('.ham_submenu').removeClass('active');
+        // 첫 번째 .ham_submenu에 active 클래스 추가
         $('.ham_submenu:first-child').addClass('active');
+        
+        // 모바일 메뉴를 닫기
+        $('.mo_kcl').css('right', '-100%');
+        // 햄버거 아이콘 상태 초기화
+        $('.ham_kcl a').removeClass('on');
+
+		if ($('.ham_kcl a').hasClass('on')) {
+            // 햄버거 아이콘 상태 초기화
+            $('.ham_kcl a').removeClass('on');
+            // a.on:after 표시 숨기기
+            $('.ham_kcl a.on:after').css('display', 'none');
+            // span 요소 표시
+            $('.ham_kcl a span').css('display', 'block');
+        }
     }
 });
 
@@ -185,7 +323,6 @@ $(window).resize(function() {
 			<div class="search_box">
 				
 				<div class="text_box">
-					<button><a href="#">뒤로가기</a></button>
 					<div class="search_tit">
 						<h2>Search</h2>
 						<span>한국건설생활환경시험연구원의 어떤 정보를 원하시나요?</span>
@@ -212,9 +349,6 @@ $(window).resize(function() {
 	
 	 
 	 <div class="mo_kcl">
-		<div class="intro">
-			<h2>반갑습니다<br>여기는 한국건설생활환경시험연구원입니다.</h2>
-		</div>
 		<div class="mo_ham">
 			<div class="menu">
 				<ul class="menu_list">

@@ -12,7 +12,7 @@
 
 /* Default Style */
 *    	  		{margin:0; padding:0; -webkit-tap-highlight-color:transparent; box-sizing:border-box;}
-html, body		{width:100%; -webkit-font-smoothing:antialiased; font:500 20px/24px "Noto Sans KR", sans-serif; color:#6a6a6a; background:#ccc; }
+html, body		{width:100%; -webkit-font-smoothing:antialiased; font:500 20px/24px "Noto Sans KR", sans-serif; color:#6a6a6a; background:#ccc;}
 
 /*button 추가*/
 button			{border:none; cursor:pointer; background:transparent;}

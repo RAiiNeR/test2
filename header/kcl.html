@@ -128,7 +128,7 @@ $(document).ready(function() {
         }
     });
 
-    // 검색창의 뒤로가기 버튼 클릭 시 검색 상자와 .on 클래스 숨기기
+    // 검색창의 뒤로가기 버튼 클릭 시 검색 상자와 .icon 클래스 숨기기
     $('.text_box > button > a').click(function() {
         $('.search_box').slideUp(250); // 위에서 아래로 슬라이드하여 사라지기
         $('.search_box input[type="text"]').val(''); // 입력된 내용 초기화
@@ -146,8 +146,8 @@ $(document).ready(function() {
 			$('.kcl > .kcl_inner nav > .search > a').removeClass('icon-active'); // 검색 아이콘 배경 이미지 원래대로
         }
 
-	 // 검색 아이콘을 보이거나 숨기기
-		$('.kcl > .kcl_inner nav > .search > a').toggle();
+	 /* 검색 아이콘을 보이거나 숨기기
+		$('.kcl > .kcl_inner nav > .search > a').toggle();*/
 
 		// 모바일 메뉴가 현재 보이는 상태인지 확인
         var isMenuVisible = $('.mo_kcl').css('right') === '0px';
@@ -221,7 +221,17 @@ $(window).resize(function() {
             $('.ham_kcl a span').css('display', 'block');
         }
     }
-});
+
+	if ($(window).width() >= 1024) {
+            // 검색 아이콘 표시
+            $('.kcl > .kcl_inner nav > .search > a').css('display', 'block');
+        } else {
+            // 모바일 상태일 때 검색 아이콘이 사라지지 않도록 유지
+            if (!$('.kcl > .kcl_inner nav > .search > a').hasClass('icon')) {
+                $('.kcl > .kcl_inner nav > .search > a').css('display', 'block');
+            }
+        }
+	}).resize();
 
   </script>
  </head>
@@ -354,6 +364,7 @@ $(window).resize(function() {
 				<ul class="menu_list">
 					<li class="ham_submenu active">
 						<a href="#">사업안내</a>
+						<span></span>
 						<ul class="ham_sub">
 							<li><a href="#">시험/검사</a></li>
 							<li><a href="#">인증/심사</a></li>
@@ -365,12 +376,13 @@ $(window).resize(function() {
 							<li><a href="#">ESG 기업지원</a></li>
 						</ul>
 					</li>
-					<li class="ham_submenu"><a href="#">온라인 시험접수</a></li>
-					<li class="ham_submenu"><a href="#">교육신청<span class="green"></span>안내</a></li>
-					<li class="ham_submenu"><a href="#">조달안내</a></li>
-					<li class="ham_submenu"><a href="#">고객참여</a></li>
+					<li class="ham_submenu"><a href="#">온라인 시험접수</a><span></span></li>
+					<li class="ham_submenu"><a href="#">교육신청ㆍ안내</a><span></span></li>
+					<li class="ham_submenu"><a href="#">조달안내</a><span></span></li>
+					<li class="ham_submenu"><a href="#">고객참여</a><span></span></li>
 					<li class="ham_submenu">
 						<a href="#">알림/소식</a>
+						<span></span>
 						<ul class="ham_sub">
 							<li><a href="#">공지사항</a></li>
 							<li><a href="#">뉴스/보도자료</a></li>
@@ -383,7 +395,7 @@ $(window).resize(function() {
 						</ul>
 					</li>
 					<li class="ham_submenu">
-						<a href="#">KCL소개</a>
+						<a href="#">KCL소개</a><span></span>
 						<ul class="ham_sub">
 							<li><a href="#">인사말</a></li>
 							<li><a href="#">설립목적 및 비전</a></li>

@@ -82,16 +82,14 @@
 .menu ul.menu_list											{position: relative; z-index: 5;; display: flex; flex-direction: column; width: 35%; height:100%; background: #0068b7; justify-content: flex-start; padding-top: 0px;}
 .menu ul.menu_list li.ham_submenu							{position: relative; padding: 15px 20px;}
 .menu ul.menu_list li.ham_submenu:first-child				{margin-top: 45px;}
-.menu ul.menu_list li.ham_submenu > a						{position: relative; z-index: 4; font-size: 20px; font-weight:400; color: #fff; display:block; background:url('../_img/kcl_plus_mo.png') no-repeat right 10px top 50% / 15px; }                 
+.menu ul.menu_list li.ham_submenu > a						{position: relative; z-index: 4; font-size: 18px; font-weight:400; color: #fff; display:block; background:url('../_img/kcl_plus_mo.png') no-repeat right 10px top 50% / 13px; }                 
 .menu ul.menu_list li.ham_submenu.design                    {display: none; background: #68d2d2; margin-bottom: 10px; left: 25px; border-radius: 15px; box-shadow: 1px 5px 11px 0.4px #53628b;}
 .ham_sub													{display: none; width: 186%; position: absolute; top:0; left: 102%; z-index:6;}
 .ham_submenu.active .ham_sub								{display:block;}
-.menu ul.menu_list li.ham_submenu.active a				{font-weight: 600; background:url('../_img/kcl_minor_mo.png') no-repeat right 10px top 50% / 15px; }
+.menu ul.menu_list li.ham_submenu.active a				{font-weight: 600; background:url('../_img/kcl_minor_mo.png') no-repeat right 10px top 50% / 13px; }
 .menu_list > li.ham_submenu:nth-child(6) > .ham_sub		{top: -43%; transform: translateY(-57%);}
 .menu_list > li.ham_submenu:nth-child(7) > .ham_sub		{top: -45%; transform: translateY(-70%);}
 .ham_sub li													{padding:15px 20px;}
 .menu ul.menu_list li.ham_submenu > .ham_sub li > a       {font-size:18px; color: #333; transition: 0.3s; font-weight: 400;}
 .menu ul.menu_list li.ham_submenu > .ham_sub li > a:hover {color: #0068b7; font-weight: 600;}
 .ham_bg                                                     {background: #efefef;position: absolute;width: 100%;height:100%;top:0;z-index: 1;}
-
-/*원본*/

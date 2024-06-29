@@ -70,7 +70,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 
 
 
-@media only screen and (min-width:1300px) and (max-width:1390px){
+@media only screen and (min-width:1201px) and (max-width:1290px){
 	.soft									{padding:0 40px; height:90px;}
 	.soft_inner > nav ul li					{margin:0 17px;}
 	.soft_inner > nav ul li a				{font-size:17px;}
@@ -99,7 +99,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 	
 }
 
-@media only screen and (min-width:640px) and (max-width:1300px){
+@media only screen and (min-width:640px) and (max-width:1200px){
 	.soft				{padding:0 35px; height:60px;}
 	.soft_logo a		{background:url('../_img/soft_logo_mo.jpg') no-repeat 0% 50% / contain; width:218px; height:33px; display:block;}
 	.soft_inner > nav	{display:none;}

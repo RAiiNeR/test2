@@ -134,7 +134,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 
 	.mo-inner > ul > li > a		  {font-size: 17px; padding: 19px 30px; width: 100%; font-weight: 600; position: relative; border-bottom: 1px solid #dfdfdf;}
 	.mo-inner > ul > li > a:before{display: none;}
-	.mo-inner > ul > li > a:after {position:absolute; right:37px; top:50%; transform:translateY(-50%); content:''; display:block; background:url('../_img/plus2.png') no-repeat 50% / contain; width:15px; height:15px;}
+	.mo-inner > ul > li > a:after {position:absolute; right:38px; top:50%; transform:translateY(-50%); content:''; display:block; background:url('../_img/plus2.png') no-repeat 50% / contain; width:15px; height:15px;}
 	.mo-inner > ul > li > a.opened:after{background: url('../_img/minor2.png') no-repeat 50% / contain; width:15px; height:15px;}
 
 }

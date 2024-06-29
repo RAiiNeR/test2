@@ -11,173 +11,198 @@
   <title>한국소프트웨어산업협회 헤더연습</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-	$(document).ready(function() {
-    var isSearchBoxOpen = false;
-    var isMoSubAnimating = false;
-    var moSubClickEnabled = false; // 초기에는 클릭 비활성화 상태로 설정
+    $(document).ready(function() {
+        var isSearchBoxOpen = false;
+        var isMoSubAnimating = false;
+        var moSubClickEnabled = false; // 초기에는 클릭 비활성화 상태로 설정
 
-    var moInnerLinks = $('.mo-inner > ul > li > a'); // .mo-inner > ul > li > a 선택자 캐싱
+        var moInnerLinks = $('.mo-inner > ul > li > a'); // .mo-inner > ul > li > a 선택자 캐싱
 
-    // 검색창 닫기 함수
-    function closeSearchBox() {
-        $('.search-box').slideUp(300, function() {
-            isSearchBoxOpen = false;
-            $('.soft_inner > .right > .search a').removeClass('active');
-            updateSearchActiveState();
-        });
-    }
-
-    // 검색 활성 상태 업데이트 함수
-    function updateSearchActiveState() {
-        $('.soft_inner > nav > ul > li > a').toggleClass('hover', !isSearchBoxOpen);
-    }
-
-    // mo-sub 클릭 이벤트 핸들러
-    function handleMoSubClick(e) {
-        e.preventDefault();
-        
-        if (isMoSubAnimating) return;
-        
-        isMoSubAnimating = true;
-        var $moSub = $(this).siblings('.mo-sub');
-        var $this = $(this);
-        
-        $('.mo-sub').not($moSub).slideUp(300).parent().find('> a').removeClass('opened');
-        
-        $moSub.slideToggle(300, function() {
-            $this.toggleClass('opened', $moSub.is(':visible'));
-            isMoSubAnimating = false;
-        });
-    }
-
-    // mo-sub 클릭 이벤트 설정 함수
-    function setMoSubEvents() {
-        moInnerLinks.on('click', handleMoSubClick);
-        moSubClickEnabled = true;
-    }
-
-    // mo-sub 클릭 이벤트 비활성화 함수
-    function unsetMoSubEvents() {
-        moInnerLinks.off('click');
-        moSubClickEnabled = false;
-    }
-
-    // 햄버거 메뉴 클릭 이벤트 핸들러
-    $('.soft_inner > .right p.ham_menu a').click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (isSearchBoxOpen) {
-            closeSearchBox();
-        }
-
-		$(this).toggleClass('on'); // 클릭할 때마다 'on' 클래스를 토글합니다.
-
-    if ($(this).hasClass('on')) {
-        $(this).find('span').hide(); // 'on' 클래스가 있으면 <span>을 숨깁니다.
-    } else {
-        $(this).find('span').show(); // 'on' 클래스가 없으면 <span>을 보입니다.
-    }
-
-		if ($(window).width() >= 1024) {
-        $('.soft_inner > nav').toggle(); // .soft_inner > nav의 가시성을 토글합니다.
-    }
-
-        // 화면 크기가 1024px 이하일 때만 mo-sub를 닫음
-        if ($(window).width() <= 1023) {
-            $('.mo-sub').slideUp(300).parent().find('> a').removeClass('opened');
-        }
-
-        if ($(window).width() <= 1022) {
-            $(this).parent().siblings('.ham-sub').slideDown(300);
-        }
-
-        $('.mo-ham').toggleClass('active').toggle(); // mo-ham 요소의 표시/숨기기 토글
-    });
-
-    // 검색 버튼 클릭 이벤트 핸들러
-    $('.soft_inner > .right > .search a').click(function(event) {
-        event.preventDefault();
-
-        if (!isSearchBoxOpen) {
-            $('.search-box').slideToggle(300, function() {
-                $('.soft_inner > .right > .search a').toggleClass('active');
-                isSearchBoxOpen = !isSearchBoxOpen;
+        // 검색창 닫기 함수
+        function closeSearchBox() {
+            $('.search-box').slideUp(300, function() {
+                isSearchBoxOpen = false;
+                $('.soft_inner > .right > .search a').removeClass('active');
                 updateSearchActiveState();
             });
-        } else {
-            closeSearchBox();
         }
-    });
 
-    // .soft_inner > nav > ul > li > a 마우스 오버 효과 처리
-    $('.soft_inner > nav > ul > li').hover(function() {
-        var $this = $(this);
-        var $subMenu = $this.children('ul.sub');
-
-        if (!isSearchBoxOpen) {
-            $subMenu.stop(true, true).slideDown(400);
-            $this.children('a').addClass('hover');
+        // 검색 활성 상태 업데이트 함수
+        function updateSearchActiveState() {
+            $('.soft_inner > nav > ul > li > a').toggleClass('hover', !isSearchBoxOpen);
         }
-    }, function() {
-        var $this = $(this);
-        var $subMenu = $this.children('ul.sub');
 
-        $subMenu.stop(true, true).slideUp(400, function() {
-            $this.children('a').removeClass('hover');
+        // mo-sub 클릭 이벤트 핸들러
+        function handleMoSubClick(e) {
+            e.preventDefault();
+            
+            if (isMoSubAnimating) return;
+            
+            isMoSubAnimating = true;
+            var $moSub = $(this).siblings('.mo-sub');
+            var $this = $(this);
+            
+            $('.mo-sub').not($moSub).slideUp(300).parent().find('> a').removeClass('opened');
+            
+            $moSub.slideToggle(300, function() {
+                $this.toggleClass('opened', $moSub.is(':visible'));
+                isMoSubAnimating = false;
+            });
+        }
+
+        // mo-sub 클릭 이벤트 설정 함수
+        function setMoSubEvents() {
+            moInnerLinks.on('click', handleMoSubClick);
+            moSubClickEnabled = true;
+        }
+
+        // mo-sub 클릭 이벤트 비활성화 함수
+        function unsetMoSubEvents() {
+            moInnerLinks.off('click');
+            moSubClickEnabled = false;
+        }
+
+        // 햄버거 메뉴 클릭 이벤트 핸들러
+        $('.soft_inner > .right p.ham_menu a').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (isSearchBoxOpen) {
+                closeSearchBox();
+            }
+
+            $(this).toggleClass('on'); // 클릭할 때마다 'on' 클래스를 토글합니다.
+
+            if ($(this).hasClass('on')) {
+                $(this).find('span').hide(); // 'on' 클래스가 있으면 <span>을 숨깁니다.
+                if ($(window).width() >= 1151) {
+                    $('.soft_inner > .right > .search').hide(); // 'on' 클래스가 있고 화면 크기가 1151 이상일 때 search 숨기기
+                }
+            } else {
+                $(this).find('span').show(); // 'on' 클래스가 없으면 <span>을 보입니다.
+                if ($(window).width() >= 1151) {
+                    $('.soft_inner > .right > .search').show(); // 'on' 클래스가 없고 화면 크기가 1151 이상일 때 search 보이기
+                }
+            }
+
+            if ($(this).hasClass('on')) {
+                $('.soft_inner > nav').hide(); // 'on' 클래스가 있을 때 nav 숨기기
+            } else {
+                if ($(window).width() >= 1151) {
+                    $('.soft_inner > nav').show(); // 'on' 클래스가 없고 화면 크기가 1151 이상일 때 nav 보이기
+                }
+            }
+
+            // 화면 크기가 1151px 이하일 때만 mo-sub를 닫음
+            if ($(window).width() <= 1151) {
+                $('.mo-sub').slideUp(300).parent().find('> a').removeClass('opened');
+            }
+
+            if ($(window).width() <= 1150) {
+                $(this).parent().siblings('.ham-sub').slideDown(300);
+            }
+
+            $('.mo-ham').toggleClass('active').toggle(); // mo-ham 요소의 표시/숨기기 토글
+        });
+
+        // 검색 버튼 클릭 이벤트 핸들러
+        $('.soft_inner > .right > .search a').click(function(event) {
+            event.preventDefault();
+
+            if (!isSearchBoxOpen) {
+                $('.search-box').slideToggle(300, function() {
+                    $('.soft_inner > .right > .search a').toggleClass('active');
+                    isSearchBoxOpen = !isSearchBoxOpen;
+                    updateSearchActiveState();
+                });
+            } else {
+                closeSearchBox();
+            }
+        });
+
+        // .soft_inner > nav > ul > li > a 마우스 오버 효과 처리
+        $('.soft_inner > nav > ul > li').hover(function() {
+            var $this = $(this);
+            var $subMenu = $this.children('ul.sub');
+
+            if (!isSearchBoxOpen) {
+                $subMenu.stop(true, true).slideDown(400);
+                $this.children('a').addClass('hover');
+            }
+        }, function() {
+            var $this = $(this);
+            var $subMenu = $this.children('ul.sub');
+
+            $subMenu.stop(true, true).slideUp(400, function() {
+                $this.children('a').removeClass('hover');
+            });
+        });
+
+        // mo-ham 내의 .mo-inner 클릭 시 전파 중지
+        $('.mo-ham .mo-inner').click(function(e) {
+            e.stopPropagation();
+        });
+
+        // mo-top 클릭 이벤트 핸들러
+        $('.mo-top').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        // mo-top 클릭 이벤트 핸들러
+        $('.bg').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        // mo-ham 클릭 이벤트 핸들러 (모바일에서 .mo-ham 클릭 시 닫기)
+        $('.mo-ham').click(function() {
+            if ($(window).width() >= 1151) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+
+            $(this).removeClass('active').hide();
+        });
+
+        // 초기화 - 화면 크기가 1150px 이하일 때 mo-sub 클릭 이벤트 설정
+        if ($(window).width() <= 1150) {
+            setMoSubEvents();
+        }
+
+        // 화면 크기 변경 이벤트 리스너 등록
+        $(window).resize(function() {
+            var windowWidth = $(window).width();
+
+            if (windowWidth <= 1150 && !moSubClickEnabled) {
+                setMoSubEvents();
+                $('.mo-sub').hide(); // 1150px 이하일 때 모든 mo-sub 닫기
+                $('.mo-inner > ul > li > a').removeClass('opened');
+            } else if (windowWidth >= 1151 && moSubClickEnabled) {
+                unsetMoSubEvents();
+                $('.mo-sub').show(); // 1151px 이상일 때 모든 mo-sub 열기
+            }
+
+            // 화면 크기가 변할 때 nav와 search의 표시 상태 업데이트
+            if ($('.soft_inner > .right p.ham_menu a').hasClass('on')) {
+                $('.soft_inner > nav').hide(); // 햄버거 메뉴가 활성화된 상태에서는 nav 숨기기
+                if (windowWidth >= 1151) {
+                    $('.soft_inner > .right > .search').hide(); // 햄버거 메뉴가 활성화된 상태이고 화면 크기가 1151 이상일 때 search 숨기기
+                }
+            } else {
+                if (windowWidth >= 1151) {
+                    $('.soft_inner > nav').show(); // 햄버거 메뉴가 비활성화 상태이고 화면 크기가 1151 이상일 때 nav 보이기
+                    $('.soft_inner > .right > .search').show(); // 햄버거 메뉴가 비활성화 상태이고 화면 크기가 1151 이상일 때 search 보이기
+                } else {
+                    $('.soft_inner > nav').hide(); // 햄버거 메뉴가 비활성화 상태이고 화면 크기가 1150 이하일 때 nav 숨기기
+                }
+            }
         });
     });
+</script>
 
-    // mo-ham 내의 .mo-inner 클릭 시 전파 중지
-    $('.mo-ham .mo-inner').click(function(e) {
-        e.stopPropagation();
-    });
 
-	// mo-top 클릭 이벤트 핸들러
-    $('.mo-top').click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
-	// mo-top 클릭 이벤트 핸들러
-    $('.bg').click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    });
-	
-
-    // mo-ham 클릭 이벤트 핸들러 (모바일에서 .mo-ham 클릭 시 닫기)
-    $('.mo-ham').click(function() {
-		if ($(window).width() >= 1024) {
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-    }
-
-        $(this).removeClass('active').hide();
-    });
-
-    // 초기화 - 화면 크기가 1023px 이하일 때 mo-sub 클릭 이벤트 설정
-    if ($(window).width() <= 1023) {
-        setMoSubEvents();
-    }
-
-    // 화면 크기 변경 이벤트 리스너 등록
-    $(window).resize(function() {
-        var windowWidth = $(window).width();
-
-        if (windowWidth <= 1023 && !moSubClickEnabled) {
-            setMoSubEvents();
-            $('.mo-sub').hide(); // 1023px 이하일 때 모든 mo-sub 닫기
-            $('.mo-inner > ul > li > a').removeClass('opened');
-        } else if (windowWidth >= 1024 && moSubClickEnabled) {
-            unsetMoSubEvents();
-            $('.mo-sub').show(); // 1024px 이상일 때 모든 mo-sub 열기
-        }
-    });
-});
-
- </script>
  </head>
  <body>
     <div class="cont">

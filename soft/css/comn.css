@@ -127,7 +127,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 	
 	ul.mo-sub		   {margin-top: 0;  background:#efefef; padding:20px 30px; display: none;}
 	ul.mo-sub > li	   {padding: 6px 0;}
-	ul.mo-sub > li > a {font-size: 14px; pointer-events: none;}
+	ul.mo-sub > li > a {font-size: 14px; pointer-events: none;color: red;}
 	ul.mo-sub > li:first-child{padding-top: 0;}
 	ul.mo-sub > li:last-child {padding-bottom: 0;}
 	

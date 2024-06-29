@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="./css/default.css">
+  <title>한국소프트웨어산업협회 헤더연습</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+	$(document).ready(function() {
+    var isSearchBoxOpen = false;
+    var isMoSubAnimating = false;
+    var moSubClickEnabled = false; // 초기에는 클릭 비활성화 상태로 설정
+
+    var moInnerLinks = $('.mo-inner > ul > li > a'); // .mo-inner > ul > li > a 선택자 캐싱
+
+    // 검색창 닫기 함수
+    function closeSearchBox() {
+        $('.search-box').slideUp(300, function() {
+            isSearchBoxOpen = false;
+            $('.soft_inner > .right > .search a').removeClass('active');
+            updateSearchActiveState();
+        });
+    }
+
+    // 검색 활성 상태 업데이트 함수
+    function updateSearchActiveState() {
+        $('.soft_inner > nav > ul > li > a').toggleClass('hover', !isSearchBoxOpen);
+    }
+
+    // mo-sub 클릭 이벤트 핸들러
+    function handleMoSubClick(e) {
+        e.preventDefault();
+        
+        if (isMoSubAnimating) return;
+        
+        isMoSubAnimating = true;
+        var $moSub = $(this).siblings('.mo-sub');
+        var $this = $(this);
+        
+        $('.mo-sub').not($moSub).slideUp(300).parent().find('> a').removeClass('opened');
+        
+        $moSub.slideToggle(300, function() {
+            $this.toggleClass('opened', $moSub.is(':visible'));
+            isMoSubAnimating = false;
+        });
+    }
+
+    // mo-sub 클릭 이벤트 설정 함수
+    function setMoSubEvents() {
+        moInnerLinks.on('click', handleMoSubClick);
+        moSubClickEnabled = true;
+    }
+
+    // mo-sub 클릭 이벤트 비활성화 함수
+    function unsetMoSubEvents() {
+        moInnerLinks.off('click');
+        moSubClickEnabled = false;
+    }
+
+    // 햄버거 메뉴 클릭 이벤트 핸들러
+    $('.soft_inner > .right p.ham_menu a').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (isSearchBoxOpen) {
+            closeSearchBox();
+        }
+
+		$(this).toggleClass('on'); // 클릭할 때마다 'on' 클래스를 토글합니다.
+
+    if ($(this).hasClass('on')) {
+        $(this).find('span').hide(); // 'on' 클래스가 있으면 <span>을 숨깁니다.
+    } else {
+        $(this).find('span').show(); // 'on' 클래스가 없으면 <span>을 보입니다.
+    }
+
+		if ($(window).width() >= 1024) {
+        $('.soft_inner > nav').toggle(); // .soft_inner > nav의 가시성을 토글합니다.
+    }
+
+        // 화면 크기가 1024px 이하일 때만 mo-sub를 닫음
+        if ($(window).width() <= 1023) {
+            $('.mo-sub').slideUp(300).parent().find('> a').removeClass('opened');
+        }
+
+        if ($(window).width() <= 1022) {
+            $(this).parent().siblings('.ham-sub').slideDown(300);
+        }
+
+        $('.mo-ham').toggleClass('active').toggle(); // mo-ham 요소의 표시/숨기기 토글
+    });
+
+    // 검색 버튼 클릭 이벤트 핸들러
+    $('.soft_inner > .right > .search a').click(function(event) {
+        event.preventDefault();
+
+        if (!isSearchBoxOpen) {
+            $('.search-box').slideToggle(300, function() {
+                $('.soft_inner > .right > .search a').toggleClass('active');
+                isSearchBoxOpen = !isSearchBoxOpen;
+                updateSearchActiveState();
+            });
+        } else {
+            closeSearchBox();
+        }
+    });
+
+    // .soft_inner > nav > ul > li > a 마우스 오버 효과 처리
+    $('.soft_inner > nav > ul > li').hover(function() {
+        var $this = $(this);
+        var $subMenu = $this.children('ul.sub');
+
+        if (!isSearchBoxOpen) {
+            $subMenu.stop(true, true).slideDown(400);
+            $this.children('a').addClass('hover');
+        }
+    }, function() {
+        var $this = $(this);
+        var $subMenu = $this.children('ul.sub');
+
+        $subMenu.stop(true, true).slideUp(400, function() {
+            $this.children('a').removeClass('hover');
+        });
+    });
+
+    // mo-ham 내의 .mo-inner 클릭 시 전파 중지
+    $('.mo-ham .mo-inner').click(function(e) {
+        e.stopPropagation();
+    });
+
+	// mo-top 클릭 이벤트 핸들러
+    $('.mo-top').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
+	// mo-top 클릭 이벤트 핸들러
+    $('.bg').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+	
+
+    // mo-ham 클릭 이벤트 핸들러 (모바일에서 .mo-ham 클릭 시 닫기)
+    $('.mo-ham').click(function() {
+		if ($(window).width() >= 1024) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+    }
+
+        $(this).removeClass('active').hide();
+    });
+
+    // 초기화 - 화면 크기가 1023px 이하일 때 mo-sub 클릭 이벤트 설정
+    if ($(window).width() <= 1023) {
+        setMoSubEvents();
+    }
+
+    // 화면 크기 변경 이벤트 리스너 등록
+    $(window).resize(function() {
+        var windowWidth = $(window).width();
+
+        if (windowWidth <= 1023 && !moSubClickEnabled) {
+            setMoSubEvents();
+            $('.mo-sub').hide(); // 1023px 이하일 때 모든 mo-sub 닫기
+            $('.mo-inner > ul > li > a').removeClass('opened');
+        } else if (windowWidth >= 1024 && moSubClickEnabled) {
+            unsetMoSubEvents();
+            $('.mo-sub').show(); // 1024px 이상일 때 모든 mo-sub 열기
+        }
+    });
+});
+
+ </script>
+ </head>
+ <body>
+    <div class="cont">
+	 <div class="header soft">
+		<div class="soft_inner">
+			<h1 class="soft_logo">
+				<a href="#">한국소프트웨어산업협회</a>
+			</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="#">사업지원</a>
+						<ul class="sub">
+							<li><a href="#">수·발주지원</a></li>
+							<li><a href="#">시장활성화</a></li>
+							<li><a href="#">정부지원사업</a></li>
+							<li><a href="#">사업가이드북</a></li>
+							<li><a href="#">법령정보</a></li>
+							<li><a href="#">SW사업자확인신청</a></li>
+							<li><a href="#">SW사업자확인현황</a></li>
+							<li><a href="#">애로사항접수</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">인재지원</a>
+						<ul class="sub">
+							<li><a href="#">인재온(On)2.0</a></li>
+							<li><a href="#">교육훈련</a></li>
+							<li><a href="#">교육신청</a></li>
+							<li><a href="#">일학습병행</a></li>
+							<li><a href="#">직무역량개발</a></li>
+							<li><a href="#">인적자원개발위원회</a></li>
+							<li><a href="#">인적자원개발협의체</a></li>
+							<li><a href="#">SW기술자경력확인신청</a></li>
+							<li><a href="#">SW기술자확인현황</a></li>
+							<li><a href="#">산업구조변화대응</a></li>
+							<li><a href="#">소프트웨어 기술인 상</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">해외진출지원</a>
+						<ul class="sub">
+							<li><a href="#">수출협의체</a></li>
+							<li><a href="#">SW수출컨설팅</a></li>
+							<li><a href="#">수출정보</a></li>
+							<li><a href="#">API 마켓플레이스</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">알림마당</a>
+						<ul class="sub">
+							<li><a href="#">공지사항</a></li>
+							<li><a href="#">협회소식</a></li>
+							<li><a href="#">주요활동</a></li>
+							<li><a href="#">뉴스레터</a></li>
+							<li><a href="#">온라인접수</a></li>
+							<li><a href="#">협회간행물</a></li>
+							<li><a href="#">보도자료</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">회원공간</a>
+						<ul class="sub">
+							<li><a href="#">회원가입안내</a></li>
+							<li><a href="#">협회 100% 활용하기</a></li>
+							<li><a href="#">회원소개</a></li>
+							<li><a href="#">회원소식</a></li>
+							<li><a href="#">회원조직</a></li>
+							<li><a href="#">회원교류</a></li>
+							<li><a href="#">KOSA 런앤그로우 포럼</a></li>
+							<li><a href="#">포상지원</a></li>
+							<li><a href="#">회원홍보관</a></li>
+							<li><a href="#">온라인홍보서비스</a></li>
+							<li><a href="#">오프라인홍보서비스</a></li>
+							<li><a href="#">제휴서비스</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">협회안내</a>
+						<ul class="sub">
+							<li><a href="#">인사말</a></li>
+							<li><a href="#">설립목적</a></li>
+							<li><a href="#">비전 및 인재상</a></li>
+							<li><a href="#">주요사업</a></li>
+							<li><a href="#">역대회장</a></li>
+							<li><a href="#">임원소개</a></li>
+							<li><a href="#">조직도</a></li>
+							<li><a href="#">오시는길</a></li>
+							<li><a href="#">CI</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			
+			<div class="right">
+				<div class="search">
+					<a href="#">검색창</a>
+				</div>
+
+				<p class="ham_menu">
+					<a href="#">
+						<span></span>
+						<span></span>
+						<span></span>
+					</a>
+				</p>
+			</div>
+
+			<div class="search-box">
+				<div class="mini-box">
+					<p class="tt">SEARCH</p>
+					<div class="box">
+						<input type="text" placeholder="필요한 정보를 검색해보세요.">
+						<div class="icon">
+							<a href="#"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	 </div>
+
+	 <div class="mo-ham">
+		<div class="mo-top"></div>
+		<div class="mo-inner">
+			<ul>
+				<li>
+					<a href="#">사업지원</a>
+					<ul class="mo-sub">
+						<li><a href="#">수·발주지원</a></li>
+						<li><a href="#">시장활성화</a></li>
+						<li><a href="#">정부지원사업</a></li>
+						<li><a href="#">사업가이드북</a></li>
+						<li><a href="#">법령정보</a></li>
+						<li><a href="#">SW사업자확인신청</a></li>
+						<li><a href="#">SW사업자확인현황</a></li>
+						<li><a href="#">애로사항접수</a></li>
+					</ul>
+				</li>
+				
+				<li>
+					<a href="#">인재지원</a>
+					<ul class="mo-sub">
+						<li><a href="#">인재온(On)2.0</a></li>
+						<li><a href="#">교육훈련</a></li>
+						<li><a href="#">교육신청</a></li>
+						<li><a href="#">일학습병행</a></li>
+						<li><a href="#">인적자원개발위원회</a></li>
+						<li><a href="#">인적자원개발협의체</a></li>
+						<li><a href="#">SW기술자경력확인신청</a></li>
+						<li><a href="#">SW기술자확인현황</a></li>
+						<li><a href="#">산업구조변화대응</a></li>
+						<li><a href="#">소프트웨어 기술인 상</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">해외진출지원</a>
+					<ul class="mo-sub">
+						<li><a href="#">수출협의체</a></li>
+						<li><a href="#">SW수출컨설팅</a></li>
+						<li><a href="#">수출정보</a></li>
+						<li><a href="#">API 마켓플레이스</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">알림마당</a>
+					<ul class="mo-sub">
+						<li><a href="#">공지사항</a></li>
+						<li><a href="#">협회소식</a></li>
+						<li><a href="#">주요활동</a></li>
+						<li><a href="#">뉴스레터</a></li>
+						<li><a href="#">온라인접수</a></li>
+						<li><a href="#">협회간행물</a></li>
+						<li><a href="#">보도자료</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">회원공간</a>
+					<ul class="mo-sub">
+						<li><a href="#">회원가입안내</a></li>
+						<li><a href="#">협회 100% 활용하기</a></li>
+						<li><a href="#">회원소개</a></li>
+						<li><a href="#">회원소식</a></li>
+						<li><a href="#">회원조직</a></li>
+						<li><a href="#">회원교류</a></li>
+						<li><a href="#">KOSA 런앤그로우 포럼</a></li>
+						<li><a href="#">포상지원</a></li>
+						<li><a href="#">회원홍보관</a></li>
+						<li><a href="#">온라인홍보서비스</a></li>
+						<li><a href="#">오프라인홍보서비스</a></li>
+						<li><a href="#">제휴서비스</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">협회안내</a>
+					<ul class="mo-sub">
+						<li><a href="#">인사말</a></li>
+						<li><a href="#">설립목적</a></li>
+						<li><a href="#">비전 및 인재상</a></li>
+						<li><a href="#">주요사업</a></li>
+						<li><a href="#">역대회장</a></li>
+						<li><a href="#">임원소개</a></li>
+						<li><a href="#">조직도</a></li>
+						<li><a href="#">오시는길</a></li>
+						<li><a href="#">CI</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="bg"></div>
+	 </div>
+	</div>
+ </body>
+</html>

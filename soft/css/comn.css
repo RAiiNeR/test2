@@ -70,7 +70,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 
 
 
-@media only screen and (min-width:1024px) and (max-width:1301px){
+@media only screen and (min-width:1024px) and (max-width:1351px){
 	.soft									{padding:0 40px; height:90px;}
 	.soft_inner > nav ul li					{margin:0 17px;}
 	.soft_inner > nav ul li a				{font-size:17px;}

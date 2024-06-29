@@ -8,7 +8,7 @@
 /*soft header*/
 .soft						{padding:0 50px; height:100px;}
 .soft_inner					{display:flex; align-items:center; justify-content:space-between; height:100%;}
-.soft_logo a				{background:url('../_img/soft_logo.jpg') no-repeat 50% 50%; width:238px; height:36px; text-indent:-9999px; display:block;}
+.soft_logo a				{background:url('../_img/soft_logo.jpg') no-repeat 50% 50% / 100%; width:238px; height:36px; text-indent:-9999px; display:block;}
 .soft_inner > nav			{height:100%;}
 .soft_inner > nav > ul		{display:flex; height:100%;}
 .soft_inner > nav > ul > li	{margin:0 32px; position:relative;}
@@ -100,15 +100,15 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 }
 
 @media only screen and (min-width:640px) and (max-width:1150px){
-	.soft				{padding:0 35px; height:60px;}
-	.soft_logo a		{background:url('../_img/soft_logo_mo.jpg') no-repeat 0% 50% / contain; width:218px; height:33px; display:block;}
+	.soft				{padding:0 35px; height:70px;}
+	.soft_logo a		{background:url('../_img/soft_logo_mo.jpg') no-repeat 0% 50% / contain; width:205px; height:31px; display:block;}
 	.soft_inner > nav	{display:none;}
 
 	.soft_inner > .right > .search a					{background:url('../_img/soft-search_mo.png') no-repeat 50% / 23px; width:23px; height:23px; display:block;}
 	.soft_inner > .right p.ham_menu						{margin-left:17px;}
 	.soft_inner > .right p.ham_menu a span:nth-child(2)	{width:15px; top:8px;right:0;}
 	.soft_inner > .right p.ham_menu a span:nth-child(3)	{width:15px; top:16px;right:0;}
-	.soft_inner > .right p.ham_menu a:after				{background:url('../_img/soft-w.png') no-repeat 50% / 20px; width:20px; height:20px; position:fixed; top:20px; right:35px;}
+	.soft_inner > .right p.ham_menu a:after				{background:url('../_img/soft-w.png') no-repeat 50% / 20px; width:20px; height:20px; position:fixed; top:25px; right:35px;}
 	.soft_inner > .right > .search a:after				{background:url('../_img/soft-x-mo2.png') no-repeat 50% 50% / 20px; width:100%; height:100%;}
 
 	/*검색창*/
@@ -119,7 +119,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 	.mini-box .box input{height:54px; padding:15px 20px;}
 	
 	/*모바일 메뉴*/
-	.mo-top				{width:100%; height: 60px; background:#074f7d; position: fixed; top: 0; z-index:1;}
+	.mo-top				{width:100%; height: 70px; background:#074f7d; position: fixed; top: 0; z-index:1;}
 	.mo-inner > ul		{display:block;}
 	.mo-inner ul > li	{max-width: none; line-height:16px;}
 	.mo-inner ul > li:hover a	  {color:initial;}
@@ -141,12 +141,12 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 
 
 @media only screen and (max-width:639px){
-	.soft									{padding:0 18px; height:50px;}
+	.soft									{padding:0 18px; height:55px;}
 	.soft_inner > nav						{display:none;}
-	.soft_logo a							{background:url('../_img/soft_logo_mo.jpg') no-repeat 0 50% / contain; width:178px; height:27px; display:block;}
-	.soft_inner > .right > .search a		{background:url('../_img/soft-search_mo.png') no-repeat 50% 50% / 20px; display:block; width:20px; height:20px;}
+	.soft_logo a							{background:url('../_img/soft_logo_mo.jpg') no-repeat 50% 50% / contain; width:179px; height:27px; display:block;}
+	.soft_inner > .right > .search a		{background:url('../_img/soft-search_mo.png') no-repeat 50% 50% / contain; display:block; width:19px; height:19px;}
 	.soft_inner > .right p.ham_menu			{margin-left:16px; width: 22px; height:18px;}
-	.soft_inner > .right p.ham_menu a:after	{background:url('../_img/soft-w2.png') no-repeat 50% / 18px; width:18px; height:18px; right:22px; top:16px; position:fixed;}
+	.soft_inner > .right p.ham_menu a:after	{background:url('../_img/soft-w2.png') no-repeat 50% / contain; width:18px; height:18px; right:22px; top:19px; position:fixed;}
 	.soft_inner > .right > .search a:after	{background:url('../_img/soft-x-mo3.png') no-repeat 50% 50% / 18px; width:100%; height:100%;}
 
 	.soft_inner > .right p.ham_menu a span	{height: 3px; width:100%;background:#222; position:absolute;}
@@ -155,10 +155,10 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 	
 	/*검색창*/
 	.mini-box p.tt					{font-size:40px; margin-bottom:30px;}
-	.search							{width:20px; height:20px;}
+	.search							{width:18px; height:18px;}
 	.search-box						{top:50px; padding:40px 20px;}
 	.icon							{width:45px; height:45px;}
-	.icon a							{background:url('../_img/soft-icon-mo2.png') no-repeat 50% 50% / 18px; width:100%; height:100%;}
+	.icon a							{background:url('../_img/soft-icon-mo2.png') no-repeat 50% 50% / 16px; width:100%; height:100%;}
 	.mini-box .box input			{height:45px; font-size:14px; font-weight:400; padding:12px 20px; max-width:290px;}
 	.mini-box .box input::placeholder{font-size:14px; font-weight:400;}
 	
@@ -166,7 +166,7 @@ ul.mo-sub > li > a:hover	  {color:#085283; font-weight:600;}
 
 
 	/*모바일 메뉴*/
-	.mo-top				{width:100%; height: 50px; background:#074f7d; position: fixed; top: 0; z-index:1;}
+	.mo-top				{width:100%; height: 55px; background:#074f7d; position: fixed; top: 0; z-index:1;}
 	.mo-inner > ul		{display:block;}
 	.mo-inner ul > li	{max-width: none; line-height:16px;}
 	.mo-inner ul > li:hover a	  {color:initial;}

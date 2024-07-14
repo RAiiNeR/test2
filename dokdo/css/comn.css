@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+/*Default Style*/
+header	  {width:100%; height:113px; border-bottom:1px solid #555; padding:0 30px; transition: 0.3s;}
+a		  {color:#fff;}
+.hd-inner {max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; height:100%;}
+
+/*로고이미지*/
+h1.logo a {width:314px; height:39px; background:url('../_img/logo-pc.png') no-repeat 50% 50% / 100%; display:block; transition: 0.3s;}
+
+/*메인메뉴*/
+ul						{text-align:center;}
+ul:not(.sub-menu)		{display:flex;}
+ul li:not(.sub-menu li) {padding:0 25px 1px; position:relative; display:flex; justify-content:center; transition: 0.3s;}
+ul li:not(.sub-menu li):hover .sub-menu {visibility:visible; opacity:1;}
+ul li a					{font-size:18px; font-weight:400; padding:41px 5px; display:inline-block; position:relative;}
+
+/*서브메뉴*/
+.sub-menu			  {position:absolute; top:90px; min-width:150px; width:100%; padding:8px 17px; background:#fff; border-radius: 15px; visibility:hidden; opacity:0; transition:0.3s;}
+.sub-menu li a		  {font-size:15px; font-weight:400; color:#666; display:block; padding:10px 0; transition:0.3s;}
+.sub-menu li a > span {width:1.5px; height:1.5px; background:#666; display:inline-block; margin:0 1.3px 5px;}
+.sub-menu li:hover a,
+.sub-menu li:hover span{color:#09847f;}
+
+/*로그인, 회원가입 / 햄버거 메뉴*/
+.ham		  {display:none; transition: 0.3s;}
+.mini-box	  {display:flex; align-items:center; transition: 0.3s;}
+.mini-box a:not(.ham a)   {font-size:15px; font-weight:300; padding-left:11px; margin-left:11px; position:relative;}
+.mini-box a:nth-child(2):before {top:50%; transform:translateY(-50%); left:-2px; width:3px; height:3px; border-radius:50%; background:#fff; position:absolute; content:''; display:block; }
+
+
+
+/*스크롤바 보이기 위한 박스*/
+.over {width:100%; height:100vh;}
+
+
+
+/*--------------------------------TA--------------------------------*/
+@media only screen and (min-width:1024px) and (max-width:1220px){
+header	  {padding:0 20px; height:106px;}
+h1.logo a {width:217px; height:27px; background:url('../_img/logo-mo.png') no-repeat 50% 50% / 217px;}
+ul li a	  {font-size:17px; font-weight:400; padding:41px 4px;}
+ul li:not(.sub-menu li) {padding:0 15px;}
+
+/*서브메뉴*/
+.sub-menu	   {padding:6px 11px;}
+.sub-menu li a {font-size:15px;}
+
+/*로그인 회원가입*/
+.mini-box a	   {margin-left:7px; padding-left:7px; font-size:11px;}
+.mini-box a:nth-child(2):before {width:2px; height:2px; left:-1px;}
+}
+
+
+@media only screen and (min-width:861px) and (max-width:1023px){
+header	  {padding: 0 25px; height:65px;}
+h1.logo a {width:264px; height:33px; background:url('../_img/logo-mo.png') no-repeat 50% 50% / 264px;}
+nav		  {display:none;}
+.ham	  {display:block; width:23px; height:16px; margin-left: 11px;}
+.ham a	  {position:relative; display: block; width:100%; height:100%;}
+.ham a span {display:inline-block; width:100%; height:2px; background:#fff; position:absolute; top:0; left:0;}
+.ham a span:nth-child(2) {top:7px;}
+.ham a span:nth-child(3) {top:14px;}
+}
+
+@media only screen and (max-width:860px){
+    header	  {padding: 0 27px; height:75px;}
+    h1.logo a {width:247px; height:31px; background:url('../_img/logo-mo.png') no-repeat 50% 50% / 247px;}
+
+    .mini-box a{display: none;}
+
+    nav		  {display:none;}
+    .ham	  {display:block; width:36px; height:24px; margin-left:0;}
+    .ham a	  {position:relative; display: block; width:100%; height:100%;}
+    .ham a span {display:inline-block; width:100%; height:3px; background:#fff; position:absolute; top:0; left:0;}
+    .ham a span:nth-child(2) {top:10px;}
+    .ham a span:nth-child(3) {top:20px;}
+}
